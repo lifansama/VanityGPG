@@ -12,20 +12,27 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+    
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
+
     - name: Install dependencies
       run: sudo apt-get install nettle-dev libssl-dev capnproto make clang pkg-config libsqlite3-dev llvm libclang-dev
+      
     - uses: actions-rs/cargo@v1
       with:
         command: build
         args: --all-features --release --verbose
-    - uses: actions-rs/cargo@v1
+      
+    - name: Output
+      uses: actions/upload-artifact@v2
       with:
-        command: test
-        args: --all-features --release --verbose
+          name: vanity_gpg
+          path: /home/runner/work/VanityGPG/VanityGPG/target/release/vanity_gpg
+          if-no-files-found: error
+        
