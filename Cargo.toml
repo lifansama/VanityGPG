@@ -28,7 +28,7 @@ cc = "1.0"
 log = { version = "^0.4", features = [ "std" ] }
 pgp = { version = "^0.7", optional = true }
 clap = { version = "^3.1", features = [ "derive" ] }
-rand = { version = "^0.8", optional = true }
+rand = { version = "^0.7", optional = true }
 rayon = "^1.5"
 regex = "^1.5"
 sha-1 = { version = "^0.10", features = [ "asm", "compress" ], optional = true }
